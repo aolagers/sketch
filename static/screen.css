@@ -5,7 +5,11 @@ body {
   text-align: center;
 }
 
-#drawing {
+#draw-canvas {
   border: 1px solid black;
   margin: 20px;
+}
+
+#info {
+	color: green;
 }

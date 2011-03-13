@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 
-    {% block content %}
-    <p>welcome to <strong>sketch paste</strong></p>
+{% block content %}
+<p>welcome to <strong>sketch paste</strong></p>
 
-    <div id="sketch">
-		{% include "draw.html" %}
-    </div>
+<div id="draw-container">
+	{% include "draw.html" %}
+</div>
 
-    <form method="get" action="">
-      <input type="submit" value="post" />
-    </form>
+<form method="get" action="">
+	<input type="submit" value="post" />
+</form>
 
-    <form method="get" action="">
-      sketch id: <input type="text" name="id" />
-      <input type="submit" value="go" />
-    </form>
-    {% endblock %}
+<form method="get" action="">
+	sketch id: <input type="text" name="id" />
+	<input type="submit" value="go" />
+</form>
+{% endblock %}
