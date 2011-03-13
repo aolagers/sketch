@@ -1,23 +1,19 @@
-<html>
-  <head>
-    <title>sketch paste</title>
-    <link href="http://fonts.googleapis.com/css?family=Unkempt" rel="stylesheet" type="text/css">
-    <style>
-      body {
-        margin-top: 100px;
-        font-family: 'Unkempt';
-        text-align: center;
-      }
-      #drawing {
-        border: 1px solid black;
-        margin: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>sketch paste</h1>
-    {% block content %}
-    {% endblock %}
-  </body>
-</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<title>sketch paste</title>
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Unkempt" type="text/css">
+		<link rel="stylesheet" href="{{ MEDIA_URL }}screen.css" type="text/css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="{{ MEDIA_URL }}draw.js"></script>
+	</head>
+	<body>
+	<p>
+		<h1>sketch paste</h1>
+		{% block content %}
+		{% endblock %}
+		<div id="jstest" />
+	</body>
+</html>

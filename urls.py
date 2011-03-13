@@ -1,10 +1,11 @@
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, include
 from django.views.generic.simple import direct_to_template
-from paste import views
+from django.conf import settings
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
+
+from paste import views
 
 urlpatterns = patterns('',
     # Example:
@@ -16,5 +17,7 @@ urlpatterns = patterns('',
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # (r'^admin/', include(admin.site.urls)),
+    (r'^admin/', include(admin.site.urls)),
+    #(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/static/favicon.ico'}),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {"document_root": settings.MEDIA_ROOT})
 )
