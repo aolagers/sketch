@@ -3,11 +3,11 @@
 from django.shortcuts import render_to_response, redirect
 
 def front(request):
-  if "id" in request.GET and request.GET["id"]:
-    return redirect("/" + request.GET["id"])
+  if request.GET.get("id"):
+    return redirect("/" + request.GET.get("id"))
 
   return render_to_response("front.html")
 
-def showsketch(request, id):
-  return render_to_response("sketch.html", {"id": id})
+def show_sketch(request, sketch_id):
+  return render_to_response("show_sketch.html", {"sketch_id": sketch_id})
 

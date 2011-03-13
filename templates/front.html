@@ -3,10 +3,16 @@
     {% block content %}
     <p>welcome to <strong>sketch paste</strong></p>
 
-    <div id="sketch"></div>
+    <div id="sketch">
+      {% include "draw.html" %}
+    </div>
 
     <form method="get" action="">
-    sketch id: <input type="text" name="id">
-    <input type="submit" value="go">
+      <input type="submit" value="post" />
+    </form>
+
+    <form method="get" action="">
+      sketch id: <input type="text" name="id" />
+      <input type="submit" value="go" />
     </form>
     {% endblock %}
