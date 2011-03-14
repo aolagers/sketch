@@ -5,7 +5,7 @@
 {% if sketch %}
 <p> showing sketch id <strong>{{ sketch.id }}</strong></p>
 	{% if sketch.image %}
-		<img class="drawing" src="{{sketch.image.url}}" alt="id: {{sketch.id}}" />
+		<img class="drawing" src="{{sketch.image.url}}" alt="sketch id: {{sketch.id}}" />
 	{% else %}
 	<!--<img src="http://forums.petrisimolin.com/media/1079/fonzie.jpg" />-->
 	<p class="error">sketch has no image.</p>

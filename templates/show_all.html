@@ -2,14 +2,17 @@
 
 {% block content %}
 <div id="image-container">
-<p> showing all sketches </p>
+
+<p> showing <strong>
+{% if sketch_count %} {{ sketch_count }} latest {% else %} all {% endif %}
+</strong> sketches </p>
 
 {% for sketch in sketches %}
 	<a href="/{{sketch.id}}">
 	{% if sketch.image %}
-		<img class="drawing resize" src="{{sketch.image.url}}" alt="id: {{sketch.id}}" />
+	<img class="drawing resize" src="{{sketch.image.url}}" title="sketch id: {{sketch.id}}"  alt="sketch id: {{sketch.id}}" />
 	{% else %}
-		<img class="drawing resize" src="{{ MEDIA_URL }}empty.png" alt="id: {{sketch.id}}" />
+		<img class="drawing resize" src="{{ MEDIA_URL }}empty.png" alt="no image found" />
 	{% endif %}
 	</a>
 {% empty %}

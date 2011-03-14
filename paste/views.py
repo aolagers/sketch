@@ -21,8 +21,13 @@ def show_sketch(request, sketch_id):
     sketch = None;
   return render_to_response("show_sketch.html", RequestContext(request, {"sketch": sketch}))
 
+def show_latest(request):
+  n = 9
+  sketches = Drawing.objects.all().order_by("-created")[:n]
+  return render_to_response("show_all.html", RequestContext(request, {"sketches": sketches, "sketch_count": n}))
+
 def show_all(request):
-  sketches = Drawing.objects.all()
+  sketches = Drawing.objects.all().order_by("-created")
   return render_to_response("show_all.html", RequestContext(request, {"sketches": sketches}))
 
 import base64
