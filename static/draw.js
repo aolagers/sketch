@@ -2,6 +2,7 @@ $(document).ready(function() {
 
 	$("#sketch-id-lookup").click(function() {
 		$(this).val("");
+		$(this).css("color", "black");
 	});
 
 	var canvas;

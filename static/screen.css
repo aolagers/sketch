@@ -1,9 +1,8 @@
 
 body {
 	max-width: 500px;
-	margin: 10px auto;
-	margin-top: 50px;
-	font-family: 'Unkempt';
+	margin: 50px auto;
+	font-family: 'Unkempt', sans-serif;
 }
 
 #draw-canvas, img.drawing {
@@ -12,7 +11,13 @@ body {
 }
 
 .success {
+	/*background-color; inherit;*/
 	color: green;
+}
+
+.error {
+	/*background-color; inherit;*/
+	color: red;
 }
 
 /*
@@ -22,20 +27,8 @@ img.drawing {
 }
 */
 
-#info {
-	display: none;
-	margin: 20px;
-	border: 1px solid gray;
-	color: green;
-	width: 400px;
-}
-
 #buttons {
 	margin-left: 40px
-}
-
-.error {
-	color: red;
 }
 
 form {
