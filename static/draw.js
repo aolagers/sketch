@@ -75,7 +75,7 @@ $(document).ready(function() {
 			url: "/save/",
 			type: "POST",
 			data: {"img" : img},
-			headers : {"X-CSRFToken" : token },
+			headers: {"X-CSRFToken" : token },
 			async: false,
 			success: function( resp ){
 				sketch_id = resp;
