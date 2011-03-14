@@ -14,19 +14,19 @@ def front(request):
 
 def delete_sketch(request, sketch_id):
   try:
-    sketch = Drawing.objects.get(pk=int(sketch_id))
+    sketch = Drawing.objects.get(pk=sketch_id)
     if sketch.image:
       sketch.image.delete()
     sketch.delete()
   except Drawing.DoesNotExist:
     sketch = None;
 
-  messages.error(request, "sketch %s deleted" % sketch_id)
-  return redirect("/")
+  messages.error(request, "sketch deleted" % sketch_id)
+  return redirect("/all")
 
 def show_sketch(request, sketch_id):
   try:
-    sketch = Drawing.objects.get(pk=int(sketch_id))
+    sketch = Drawing.objects.get(pk=sketch_id)
   except Drawing.DoesNotExist:
     sketch = None;
   except ValueError:
@@ -63,7 +63,7 @@ def save_sketch(request):
     new_drawing = Drawing()
     new_drawing.save()
     new_drawing.image.save(str(new_drawing.pk) + ".png", ContentFile(pngstring))
-    json = '{"sketch_id" : %s}' % new_drawing.pk
+    json = '{"sketch_id" : "%s"}' % new_drawing.pk
     print json
     messages.success(request, "successfully posted a new sketch!")
     return HttpResponse(json, mimetype="application/json")
