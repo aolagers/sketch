@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+	$("#sketch-id-lookup").click(function() {
+		$(this).val("");
+	});
+
 	var canvas;
 	var ctx;
 	var WIDTH;
@@ -76,7 +80,6 @@ $(document).ready(function() {
 			success: function( resp ){
 				sketch_id = resp;
 				$("#sketch-id-input").val(sketch_id);
-				alert(sketch_id);
 			}
 		});
 

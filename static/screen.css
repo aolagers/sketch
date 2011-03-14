@@ -6,10 +6,17 @@ body {
 	font-family: 'Unkempt';
 }
 
-#draw-canvas {
+#draw-canvas, img.drawing {
 	border: 1px solid black;
 	margin: 20px;
 }
+
+/*
+img.drawing {
+	border: 1px solid black;
+	margin: 20px;
+}
+*/
 
 #info {
 	display: none;
