@@ -11,6 +11,10 @@ body {
 	margin: 20px;
 }
 
+.success {
+	color: green;
+}
+
 /*
 img.drawing {
 	border: 1px solid black;

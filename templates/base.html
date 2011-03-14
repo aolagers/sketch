@@ -11,6 +11,12 @@
 	<body>
 		<h1>sketch paste</h1>
 
+        <div id="messgaes">
+          {% for m in messages %}
+          <p{% if m.tags %} class="{{ m.tags }}"{% endif %}>{{m}}</p>
+          {% endfor %}
+        </div>
+
 		{% block content %}
 		{% endblock %}
 
