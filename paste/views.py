@@ -25,13 +25,14 @@ import base64
 
 def save_sketch(request):
   if request.method == "POST" and request.is_ajax():
+    print "ajax"
     imgstring = str(request.POST.get("img"))
     f = base64.b64decode(imgstring.split(",")[1])
     d = Drawing()
     d.save()
     c = ContentFile(f)
     d.image.save(str(d.pk) + ".png", c)
-    return HttpResponse(d.pk)
+    return HttpResponse('{"sketch_id" : %s}'%d.pk, mimetype="application/json")
 
   return HttpResponseNotFound("invalid save request")
 

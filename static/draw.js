@@ -74,11 +74,12 @@ $(document).ready(function() {
 		$.ajax({
 			url: "/save/",
 			type: "POST",
+			//dataType: json,
 			data: {"img" : img},
 			headers: {"X-CSRFToken" : token },
 			async: false,
-			success: function( resp ){
-				sketch_id = resp;
+			success: function( response ){
+				sketch_id = response["sketch_id"];
 				$("#sketch-id-input").val(sketch_id);
 			}
 		});
