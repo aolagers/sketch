@@ -5,9 +5,31 @@ body {
 	font-family: 'Unkempt', sans-serif;
 }
 
-#draw-canvas, img.drawing {
+a {
+	text-decoration: none;
+}
+
+#header table {
+	width: 100%;
+}
+
+#topmenu {
+	vertical-align: middle;
+	text-align: right;
+}
+
+#content {
+	clear: both;
+}
+
+#draw-canvas, .drawing {
 	border: 1px solid black;
-	margin: 20px;
+	margin: 10px 5px 5px 10px;
+}
+
+.resize {
+	height: auto;
+	width: 100px;
 }
 
 .success {

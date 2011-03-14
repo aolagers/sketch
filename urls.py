@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 
     (r'^$', views.front),
     (r'^save/$', views.save_sketch),
+    (r'^all/$', views.show_all),
     (r'^(\w+)/$', views.show_sketch),
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),

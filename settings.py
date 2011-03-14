@@ -2,6 +2,7 @@
 from os import path
 
 DEBUG = True
+PRETTIFY = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

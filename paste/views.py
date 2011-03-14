@@ -21,6 +21,10 @@ def show_sketch(request, sketch_id):
     sketch = None;
   return render_to_response("show_sketch.html", RequestContext(request, {"sketch": sketch}))
 
+def show_all(request):
+  sketches = Drawing.objects.all()
+  return render_to_response("show_all.html", RequestContext(request, {"sketches": sketches}))
+
 import base64
 def save_sketch(request):
   if request.method == "POST" and request.is_ajax():

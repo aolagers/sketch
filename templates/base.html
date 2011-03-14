@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 
 <html>
-	<head>
-		<title>sketch paste</title>
-        <meta charset="UTF-8" />
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Unkempt" type="text/css">
-		<link rel="stylesheet" href="{{ MEDIA_URL }}screen.css" type="text/css" />
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	</head>
-	<body>
-		<h1>sketch paste</h1>
+  <head>
+    <title>sketch paste</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Unkempt" type="text/css">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}screen.css" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="header">
+      <table>
+        <tr>
+          <td>
+            <h1>sketch paste</h1>
+          </td>
+          <td id="topmenu">
+            <a href="/">new</a> | 
+            <a href="/all/">all</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="content">
 
-        <div id="messgaes">
-          {% for m in messages %}
-          <p{% if m.tags %} class="{{ m.tags }}"{% endif %}>{{m}}</p>
-          {% endfor %}
-        </div>
+    <div id="messgaes">
+      {% for m in messages %}
+      <p{% if m.tags %} class="{{ m.tags }}"{% endif %}>{{m}}</p>
+      {% endfor %}
+    </div>
 
-		{% block content %}
-		{% endblock %}
+    {% block content %}
+    {% endblock %}
 
-		{% csrf_token %}
-	</body>
+    {% csrf_token %}
+    </div>
+  </body>
 
 </html>

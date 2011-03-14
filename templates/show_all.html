@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="image-container">
+<p> showing all sketches </p>
+
+{% for sketch in sketches %}
+	<a href="/{{sketch.id}}">
+	{% if sketch.image %}
+		<img class="drawing resize" src="{{sketch.image.url}}" alt="id: {{sketch.id}}" />
+	{% else %}
+		<img class="drawing resize" src="{{ MEDIA_URL }}empty.png" alt="id: {{sketch.id}}" />
+	{% endif %}
+	</a>
+{% empty %}
+	<p class="error">no sketches found.</p>
+{% endfor %}
+
+</p>
+
+</div>
+
+<p> <a href="/">back to front page</a> </p>
+{% endblock %}
+
