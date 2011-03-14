@@ -12,7 +12,8 @@ urlpatterns = patterns('',
     # (r'^draw/', include('draw.foo.urls')),
 
     (r'^$', views.front),
-    (r'^(\w+)$', views.show_sketch),
+    (r'^save/$', views.save_sketch),
+    (r'^(\w+)/$', views.show_sketch),
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

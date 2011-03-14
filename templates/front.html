@@ -4,15 +4,29 @@
 <p>welcome to <strong>sketch paste</strong></p>
 
 <div id="draw-container">
-	{% include "draw.html" %}
+	
+	<script type="text/javascript" src="{{ MEDIA_URL }}draw.js"></script>
+	<canvas id="draw-canvas" width="400" height="300">
+	Your browser does not support the
+	<a href="http://en.wikipedia.org/wiki/Canvas_element">HTML5 canvas element</a>.
+	</canvas>
+
+	<div id="buttons">
+		<form method="get" action="">
+			<input type="submit" value="clear" />
+		</form>
+
+		<form method="get" action="/save">
+			<input id="sketch-id-input" type="hidden" name="sketch-id" />
+			<input id="save-button" type="submit" value="post" />
+		</form>
+	</div>
+
 </div>
-
+<!--
 <form method="get" action="">
-	<input type="submit" value="post" />
-</form>
-
-<form method="get" action="">
-	sketch id: <input type="text" name="id" />
+	sketch id: <input type="text" name="sketch_id" />
 	<input type="submit" value="go" />
 </form>
+-->
 {% endblock %}

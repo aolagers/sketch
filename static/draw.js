@@ -13,6 +13,8 @@ $(document).ready(function() {
 		ctx = canvas[0].getContext("2d");
 		WIDTH = canvas.width();
 		HEIGHT = canvas.height();
+
+		ctx.lineWidth = 2;
 	}
 
 	function onMouseMove(evt) {
@@ -22,7 +24,6 @@ $(document).ready(function() {
 		mouse_x = evt.pageX - canvas.offset().left;
 		mouse_y = evt.pageY - canvas.offset().top;
 
-		$("#info").html("x: " + mouse_x + " y: " + mouse_y + " " + mousePressed);
 		if (mousePressed) {
 			ctx.beginPath();
 			ctx.moveTo(mouse_last_x, mouse_last_y);
@@ -30,12 +31,15 @@ $(document).ready(function() {
 			ctx.stroke();
 			ctx.closePath();
 		}
+
+		//$("#info").html("x: " + mouse_x + " y: " + mouse_y + " " + mousePressed).css("display", "block");
 	}
 
 	function onMouseDown(evt) {
 		mousePressed = true;
 
 	}
+
 	function onMouseUp(evt) {
 		mousePressed = false;
 	}
@@ -45,8 +49,39 @@ $(document).ready(function() {
 	$("#draw-canvas").mouseup(onMouseUp);
 
 	init();
-	//init_mouse();
 
+	$("#save-button").click(function() {
+		var c = document.getElementById("draw-canvas");
+		var img = c.toDataURL("image/png");
+		var token;
+		var sketch_id = 0;
+
+		if (document.cookie && document.cookie != "") {
+			cookies = document.cookie.split(";");
+			for (i = 0; i < cookies.length; i++) {
+				cookie = $.trim(cookies[i]);
+				if (cookie.substring(0, 10) == "csrftoken=") {
+					token = decodeURIComponent(cookie.substring(10));
+					break;
+				}
+			}
+		}
+
+		$.ajax({
+			url: "/save/",
+			type: "POST",
+			data: {"img" : img},
+			headers : {"X-CSRFToken" : token },
+			async: false,
+			success: function( resp ){
+				sketch_id = resp;
+				$("#sketch-id-input").val(sketch_id);
+				alert(sketch_id);
+			}
+		});
+
+		return true;
+	});
 
 
 });

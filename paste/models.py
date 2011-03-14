@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+class Drawing(models.Model):
+  image = models.ImageField(upload_to="drawings/")
+  created = models.DateTimeField(auto_now=True)
+

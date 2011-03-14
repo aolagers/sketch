@@ -1,10 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p> showing image id <strong>{{ sketch_id }}</strong></p>
 <p>
-<img src="http://forums.petrisimolin.com/media/1079/fonzie.jpg" />
+{% if sketch %}
+<p> showing sketch id <strong>{{ sketch.id }}</strong></p>
+	{% if sketch.image %}
+		<img src="{{sketch.image.url}}" alt="id: {{sketch.id}}" />
+	{% else %}
+	<!--<img src="http://forums.petrisimolin.com/media/1079/fonzie.jpg" />-->
+	<p class="error">sketch has no image.</p>
+	{% endif %}
+{% else %}
+	<p class="error">sketch not found.</p>
+{% endif %}
 </p>
+
 <p>
 <a href="/">front page</a>
 </p>
