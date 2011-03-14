@@ -1,25 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>welcome to <strong>sketch paste.</strong></p>
+<p>welcome to <strong>sketch.</strong></p>
 
 <div id="draw-container" style="text-align: center">
-
 	<script type="text/javascript" src="{{ MEDIA_URL }}draw.js"></script>
 	<canvas id="draw-canvas" width="450" height="320">
 	Your browser does not support the
 	<a href="http://en.wikipedia.org/wiki/Canvas_element">HTML5 canvas element.</a>
 	</canvas>
+</div>
 
 
-<div id="buttons">
+<div id="buttons" style="text-align: right">
 
+	<!--
 	<span style="float: left">
 	<form method="get">
 		<input id="sketch-id-lookup" type="text" name="sketch_id" value="sketch id" style="width:60px; text-align:center; color: gray" />
 		<input id="show-button" type="submit" value="show" />
 	</form>
 	</span>
+	-->
 
 	<span style="float: right">
 		<form method="get">
@@ -32,6 +34,5 @@
 		</form>
 	</span>
 
-</div>
 </div>
 {% endblock %}

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% block content %}
 <div id="image-container">
@@ -6,9 +7,10 @@
 <p> showing sketch id <strong>{{ sketch.id }}</strong></p>
 	{% if sketch.image %}
 		<img class="drawing" src="{{sketch.image.url}}" alt="sketch id: {{sketch.id}}" />
+		<p>created {{sketch.humanize_timediff}}</p>
+		<p><a href="/delete/{{sketch.id}}/">delete this sketch</a></p>
 	{% else %}
-	<!--<img src="http://forums.petrisimolin.com/media/1079/fonzie.jpg" />-->
-	<p class="error">sketch has no image.</p>
+		<p class="error">sketch has no image.</p>
 	{% endif %}
 {% else %}
 	<p class="error">sketch not found.</p>
@@ -17,6 +19,6 @@
 
 </div>
 
-<p> <a href="/">back to front page</a> </p>
+<div> <a href="/">back to front page</a> </div>
 {% endblock %}
 

@@ -12,6 +12,18 @@ def front(request):
     return redirect("/" + request.GET.get("sketch_id"))
   return render_to_response("front.html", RequestContext(request))
 
+def delete_sketch(request, sketch_id):
+  try:
+    sketch = Drawing.objects.get(pk=int(sketch_id))
+    if sketch.image:
+      sketch.image.delete()
+    sketch.delete()
+  except Drawing.DoesNotExist:
+    sketch = None;
+
+  messages.error(request, "sketch %s deleted" % sketch_id)
+  return redirect("/")
+
 def show_sketch(request, sketch_id):
   try:
     sketch = Drawing.objects.get(pk=int(sketch_id))
@@ -19,6 +31,7 @@ def show_sketch(request, sketch_id):
     sketch = None;
   except ValueError:
     sketch = None;
+
   return render_to_response("show_sketch.html", RequestContext(request, {"sketch": sketch}))
 
 def show_latest(request):
@@ -26,8 +39,20 @@ def show_latest(request):
   sketches = Drawing.objects.all().order_by("-created")[:n]
   return render_to_response("show_all.html", RequestContext(request, {"sketches": sketches, "sketch_count": n}))
 
+from django.core.paginator import Paginator
 def show_all(request):
-  sketches = Drawing.objects.all().order_by("-created")
+  sketches_all = Drawing.objects.all().order_by("-created")
+  paginator = Paginator(sketches_all, 9)
+  try:
+    page = int(request.GET.get('page', '1'))
+  except ValueError:
+    page = 1
+
+  try:
+    sketches = paginator.page(page)
+  except:
+    sketches = paginator.page(paginator.num_pages)
+    
   return render_to_response("show_all.html", RequestContext(request, {"sketches": sketches}))
 
 import base64

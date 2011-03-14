@@ -5,6 +5,10 @@ body {
 	font-family: 'Unkempt', sans-serif;
 }
 
+#image-container {
+	margin-bottom: 20px;
+}
+
 a {
 	text-decoration: none;
 }
@@ -33,12 +37,10 @@ a {
 }
 
 .success {
-	/*background-color; inherit;*/
 	color: green;
 }
 
 .error {
-	/*background-color; inherit;*/
 	color: red;
 }
 
