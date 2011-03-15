@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id="image-container">
-{% if sketch %}
 <p> showing sketch id <strong>{{ sketch.pk }}</strong></p>
+<div id="container">
+{% if sketch %}
 	{% if sketch.image %}
 		<img class="drawing" src="{{sketch.image.url}}" alt="sketch id: {{sketch.pk}}" />
-		<p>created {{sketch.humanize_timediff}}</p>
-		<p><a href="/delete/{{sketch.pk}}/">delete this sketch</a></p>
 	{% else %}
 		<p class="error">sketch has no image.</p>
 	{% endif %}
@@ -17,6 +15,11 @@
 </p>
 
 </div>
+
+{% if sketch %}
+<p>created {{sketch.humanize_timediff}}</p>
+<p><a href="/delete/{{sketch.pk}}/">delete this sketch</a></p>
+{% endif %}
 
 <div> <a href="/">back to front page</a> </div>
 {% endblock %}

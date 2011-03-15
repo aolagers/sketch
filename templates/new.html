@@ -2,13 +2,15 @@
 
 {% block navigation %}
             <strong> new </strong> |
-            <a href="/browse/"> browse </a>
+            <a href="/browse/"> browse </a> | 
+            <a href="/about/"> about </a>
+            
 {% endblock %}
 
 {% block content %}
 <p>welcome to <strong>sketch.</strong></p>
 
-<div id="draw-container" style="text-align: center">
+<div id="container">
 	<script type="text/javascript" src="{{ MEDIA_URL }}sketch.js"></script>
 	<canvas id="draw-canvas" width="450" height="320">
 	Your browser does not support the
@@ -17,7 +19,7 @@
 </div>
 
 
-<div id="buttons" style="text-align: right">
+<div id="bottom-nav" class="buttons">
 
 	<!--
 	<span style="float: left">
@@ -28,17 +30,15 @@
 	</span>
 	-->
 
-	<span style="float: right">
+	<div class="right">
 		<form method="get">
 			<input type="submit" value="clear" />
 		</form>
-
 		<form method="get">
 			<input id="sketch-id-input" type="hidden" name="sketch_id" />
 			<input id="save-button" type="submit" value="post" style="font-weight: bold"/>
 		</form>
-	</span>
-
+	</div>
 </div>
 {% csrf_token %}
 {% endblock %}

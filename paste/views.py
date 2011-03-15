@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.contrib import messages
 from django.core.files.base import ContentFile
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
+import base64
 
 from paste.models import Sketch
 
@@ -33,7 +34,7 @@ def show_sketch(request, sketch_id):
   except ValueError:
     sketch = None;
 
-  return render_to_response("show_sketch.html", RequestContext(request, {"sketch": sketch}))
+  return render_to_response("show_sketch.html", RequestContext(request, {"sketch" : sketch}))
 
 
 def browse(request):
@@ -51,9 +52,12 @@ def browse(request):
   except (EmptyPage, InvalidPage):
     sketches = paginator.page(paginator.num_pages)
     
-  return render_to_response("browse.html", RequestContext(request, {"pages": sketches}))
+  return render_to_response("browse.html", RequestContext(request, {"pages" : sketches}))
 
-import base64
+def about(request):
+  count = Sketch.objects.all().count()
+  return render_to_response("about.html", RequestContext(request, {"count" : count}))
+
 def save_sketch(request):
   """Saves a png sketch to the database.
   Input:
@@ -61,16 +65,14 @@ def save_sketch(request):
   Output:
     a json object {"sketch_id":id} where id is the primary key of the saved object.
   """
-  print "saving"
   if request.method == "POST" and request.is_ajax():
-    print "is_ajax"
     imgstring = str(request.POST.get("img"))
     pngstring = base64.b64decode(imgstring.split(",")[1])
     new_sketch = Sketch()
     new_sketch.save()
     new_sketch.image.save(str(new_sketch.pk) + ".png", ContentFile(pngstring))
     json = '{"sketch_id" : "%s"}' % new_sketch.pk
-    print json
+    print "new image: %s" % json
     messages.success(request, "successfully posted a new sketch!")
     return HttpResponse(json, mimetype="application/json")
 

@@ -4,50 +4,35 @@ body {
 	font-family: 'Unkempt', sans-serif;
 }
 
-#image-container {
-	margin-bottom: 20px;
+a { text-decoration: none; }
+form { display: inline; }
+
+#header { width: 100%; overflow: auto; }
+#header h1 { float: left; }
+#header #topmenu {
+	margin-top: 25px;
+	float: right;
+	padding: 5px;
 }
 
-a {
-	text-decoration: none;
-}
+img, #draw-canvas { border: 1px solid black; }
 
-#header table {
-	width: 100%;
-}
+#container, #thumb-grid { margin: 15px; }
 
-#topmenu {
-	vertical-align: middle;
-	text-align: right;
-}
-
-#content {
-	clear: both;
-}
-
-#draw-canvas, .drawing {
-	border: 1px solid black;
-	margin: 10px 5px 5px 10px;
-}
-
-.resize {
-	height: auto;
+.thumb {
+	margin-right: 10px;
+	margin-bottom: 10px;
 	width: 140px;
+	height: auto;
 }
 
-.success {
-	color: green;
-}
+#bottom-nav { overflow: auto; padding: 5px;}
 
-.error {
-	color: red;
-}
+.buttons { margin-right: 50px; }
 
-#buttons {
-	margin: 10px auto;
-	width: 80%;
-}
+.success { color: green; }
+.error { color: red; }
+.left { float: left; }
+.right { float: right; }
 
-form {
-	display: inline;
-}
+

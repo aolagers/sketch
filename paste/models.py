@@ -33,10 +33,19 @@ class Sketch(models.Model):
 
   key = RandomIDField(primary_key=True, auto=True)
   image = models.ImageField(upload_to="drawings/")
-  created = models.DateTimeField(auto_now_add=True)
+  created = models.DateTimeField(auto_now_add=True, verbose_name="Creation time")
 
   def __unicode__(self):
     return str(self.pk)
+
+  def get_absolute_url(self):
+    return "/%s/" % self.pk
+
+  def thumbnail(self):
+    url = '%s' % self.image.url
+    return '<img src="%s" width="%s" height="%s" />' % (url, 50, 50)
+
+  thumbnail.allow_tags = True
 
   def humanize_timediff(self):
     delta = datetime.datetime.now() - self.created

@@ -12,6 +12,7 @@ urlpatterns = patterns('',
 
     (r'^save/$', views.save_sketch),
     (r'^browse/$', views.browse),
+    (r'^about/$', views.about),
     (r'^delete/(\w+)/$', views.delete_sketch),
 
     (r'^admin/', include(admin.site.urls)),
@@ -26,3 +27,6 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 )
+
+handler404 = 'django.views.defaults.page_not_found'
+handler500 = 'django.views.defaults.server_error'

@@ -10,19 +10,14 @@
   </head>
   <body>
     <div id="header">
-      <table>
-        <tr>
-          <td>
-            <h1>sketch</h1>
-          </td>
-          <td id="topmenu">
-            {% block navigation %}
-            <a href="/"> new </a> |
-            <a href="/browse/"> browse </a>
-            {% endblock %}
-          </td>
-        </tr>
-      </table>
+      <h1>sketch</h1>
+      <div id="topmenu">
+        {% block navigation %}
+        <a href="/"> new </a> |
+        <a href="/browse/"> browse </a> | 
+        <a href="/about/"> about </a>
+        {% endblock %}
+      </div>
     </div>
     <div id="content">
 
@@ -39,5 +34,4 @@
 
     </div>
   </body>
-
 </html>
