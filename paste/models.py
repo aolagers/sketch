@@ -20,8 +20,8 @@ class RandomIDField(models.CharField):
       kwargs['blank'] = False
     models.CharField.__init__(self, verbose_name, name, **kwargs)
 
-  def get_internal_type(self):
-    return models.CharField.__name__
+  #def get_internal_type(self):
+  #  return models.CharField.__name__
 
   def pre_save(self, model_instance, add):
     value = super(RandomIDField, self).pre_save(model_instance, add)
@@ -32,7 +32,7 @@ class RandomIDField(models.CharField):
 
 class Drawing(models.Model):
 
-  id = RandomIDField(primary_key=True, auto=True)
+  key = RandomIDField(primary_key=True, auto=True)
   image = models.ImageField(upload_to="drawings/")
   created = models.DateTimeField(auto_now_add=True)
 

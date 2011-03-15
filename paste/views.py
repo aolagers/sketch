@@ -21,7 +21,7 @@ def delete_sketch(request, sketch_id):
   except Drawing.DoesNotExist:
     sketch = None;
 
-  messages.error(request, "sketch deleted" % sketch_id)
+  messages.error(request, "sketch deleted")
   return redirect("/all")
 
 def show_sketch(request, sketch_id):
