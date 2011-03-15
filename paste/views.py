@@ -8,7 +8,8 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 from paste.models import Drawing
 
-def front(request):
+def new_sketch(request):
+  """Shows the drawing canvas. If "sketch_id" in GET data, shows the sketch instead."""
   if request.GET.get("sketch_id"):
     return redirect("/" + request.GET.get("sketch_id"))
   return render_to_response("new.html", RequestContext(request))
@@ -37,8 +38,10 @@ def show_sketch(request, sketch_id):
 
 
 def browse(request):
+  """A paginated view for browsing all sketches."""
   sketches_all = Drawing.objects.all().order_by("-created")
   paginator = Paginator(sketches_all, 9)
+
   try:
     page = int(request.GET.get('page', '1'))
   except ValueError:
@@ -53,6 +56,12 @@ def browse(request):
 
 import base64
 def save_sketch(request):
+  """Saves a png sketch to the database.
+  Input:
+    a json object {"img":data} where data is a base64 encoded png.
+  Output:
+    a json object {"sketch_id":id} where id is the primary key of the saved object.
+  """
   if request.method == "POST" and request.is_ajax():
     imgstring = str(request.POST.get("img"))
     pngstring = base64.b64decode(imgstring.split(",")[1])

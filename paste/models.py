@@ -14,7 +14,7 @@ def get_random_string():
 class RandomIDField(models.CharField):
   def __init__(self, verbose_name=None, name=None, auto=False, **kwargs):
     self.auto = auto
-    kwargs['max_length'] = 5
+    kwargs['max_length'] = 10
     if auto:
       kwargs['editable'] = False
       kwargs['blank'] = False
