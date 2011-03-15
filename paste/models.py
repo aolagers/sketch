@@ -2,15 +2,6 @@ from django.db import models
 import datetime
 import random
 
-def get_random_string():
-  alphabet = "abcdefghijklmnopqrstuvwxyz0123456789"
-  rndstr = "".join([x for x in random.sample(alphabet, 5)])
-  while Drawing.objects.filter(pk=rndstr):
-    rndstr = "".join([x for x in random.sample(alphabet, 5)])
-
-  return rndstr
-  
-
 class RandomIDField(models.CharField):
   def __init__(self, verbose_name=None, name=None, auto=False, **kwargs):
     self.auto = auto
@@ -22,15 +13,23 @@ class RandomIDField(models.CharField):
 
   #def get_internal_type(self):
   #  return models.CharField.__name__
-
+  
+  def _get_random_key(self):
+    alphabet = "abcdefghijklmnopqrstuvwxyz0123456789"
+    rndstr = "".join([x for x in random.sample(alphabet, 5)])
+    while Sketch.objects.filter(pk=rndstr):
+      rndstr = "".join([x for x in random.sample(alphabet, 5)])
+  
+    return rndstr
+  
   def pre_save(self, model_instance, add):
     value = super(RandomIDField, self).pre_save(model_instance, add)
     if (not value) and self.auto:
-      value = get_random_string()
+      value = self._get_random_key()
       setattr(model_instance, self.attname, value)
     return value
 
-class Drawing(models.Model):
+class Sketch(models.Model):
 
   key = RandomIDField(primary_key=True, auto=True)
   image = models.ImageField(upload_to="drawings/")
@@ -56,4 +55,3 @@ class Drawing(models.Model):
     else:
       human_date =  "a few seconds ago"
     return human_date
-      

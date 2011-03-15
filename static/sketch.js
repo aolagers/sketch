@@ -37,7 +37,6 @@ $(document).ready(function() {
 			ctx.closePath();
 		}
 
-		//$("#info").html("x: " + mouse_x + " y: " + mouse_y + " " + mousePressed).css("display", "block");
 	}
 
 	function onMouseDown(evt) {
@@ -75,7 +74,7 @@ $(document).ready(function() {
 		$.ajax({
 			url: "/save/",
 			type: "POST",
-			//dataType: json,
+			dataType: "json",
 			data: {"img" : img},
 			headers: {"X-CSRFToken" : token },
 			async: false,

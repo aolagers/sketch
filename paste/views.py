@@ -2,11 +2,10 @@ from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseNotFound
 from django.contrib import messages
-from django.shortcuts import redirect
 from django.core.files.base import ContentFile
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
-from paste.models import Drawing
+from paste.models import Sketch
 
 def new_sketch(request):
   """Shows the drawing canvas. If "sketch_id" in GET data, shows the sketch instead."""
@@ -16,11 +15,11 @@ def new_sketch(request):
 
 def delete_sketch(request, sketch_id):
   try:
-    sketch = Drawing.objects.get(pk=sketch_id)
+    sketch = Sketch.objects.get(pk=sketch_id)
     if sketch.image:
       sketch.image.delete()
     sketch.delete()
-  except Drawing.DoesNotExist:
+  except Sketch.DoesNotExist:
     sketch = None;
 
   messages.error(request, "sketch deleted")
@@ -28,8 +27,8 @@ def delete_sketch(request, sketch_id):
 
 def show_sketch(request, sketch_id):
   try:
-    sketch = Drawing.objects.get(pk=sketch_id)
-  except Drawing.DoesNotExist:
+    sketch = Sketch.objects.get(pk=sketch_id)
+  except Sketch.DoesNotExist:
     sketch = None;
   except ValueError:
     sketch = None;
@@ -39,7 +38,7 @@ def show_sketch(request, sketch_id):
 
 def browse(request):
   """A paginated view for browsing all sketches."""
-  sketches_all = Drawing.objects.all().order_by("-created")
+  sketches_all = Sketch.objects.all().order_by("-created")
   paginator = Paginator(sketches_all, 9)
 
   try:
@@ -62,13 +61,15 @@ def save_sketch(request):
   Output:
     a json object {"sketch_id":id} where id is the primary key of the saved object.
   """
+  print "saving"
   if request.method == "POST" and request.is_ajax():
+    print "is_ajax"
     imgstring = str(request.POST.get("img"))
     pngstring = base64.b64decode(imgstring.split(",")[1])
-    new_drawing = Drawing()
-    new_drawing.save()
-    new_drawing.image.save(str(new_drawing.pk) + ".png", ContentFile(pngstring))
-    json = '{"sketch_id" : "%s"}' % new_drawing.pk
+    new_sketch = Sketch()
+    new_sketch.save()
+    new_sketch.image.save(str(new_sketch.pk) + ".png", ContentFile(pngstring))
+    json = '{"sketch_id" : "%s"}' % new_sketch.pk
     print json
     messages.success(request, "successfully posted a new sketch!")
     return HttpResponse(json, mimetype="application/json")
