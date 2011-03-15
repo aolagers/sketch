@@ -16,8 +16,10 @@
             <h1>sketch</h1>
           </td>
           <td id="topmenu">
+            {% block navigation %}
             <a href="/"> new </a> |
-            <a href="/all/"> browse </a>
+            <a href="/browse/"> browse </a>
+            {% endblock %}
           </td>
         </tr>
       </table>
@@ -33,7 +35,6 @@
     {% block content %}
     {% endblock %}
 
-    {% csrf_token %}
     </div>
   </body>
 

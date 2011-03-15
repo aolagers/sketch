@@ -3,11 +3,11 @@
 {% block content %}
 <div id="image-container">
 {% if sketch %}
-<p> showing sketch id <strong>{{ sketch.id }}</strong></p>
+<p> showing sketch id <strong>{{ sketch.pk }}</strong></p>
 	{% if sketch.image %}
-		<img class="drawing" src="{{sketch.image.url}}" alt="sketch id: {{sketch.id}}" />
+		<img class="drawing" src="{{sketch.image.url}}" alt="sketch id: {{sketch.pk}}" />
 		<p>created {{sketch.humanize_timediff}}</p>
-		<p><a href="/delete/{{sketch.id}}/">delete this sketch</a></p>
+		<p><a href="/delete/{{sketch.pk}}/">delete this sketch</a></p>
 	{% else %}
 		<p class="error">sketch has no image.</p>
 	{% endif %}

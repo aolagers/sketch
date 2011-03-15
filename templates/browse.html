@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block navigation %}
+            <a href="/"> new </a> | 
+            <strong> browse </strong>
+{% endblock %}
+
+{% block content %}
+<div id="image-container">
+
+	<p> showing sketches <strong> {{ pages.start_index }} - {{ pages.end_index }} </strong></p>
+
+	{% for sketch in pages.object_list %}
+	<a href="/{{sketch.pk}}">
+		{% if sketch.image %}
+			<img class="drawing resize" src="{{sketch.image.url}}" title="sketch id: {{sketch.pk}}"  alt="sketch id: {{sketch.pk}}" />
+		{% else %}
+			<img class="drawing resize" src="{{MEDIA_URL}}empty.png" alt="no image found" />
+		{% endif %}
+	</a>
+	{% empty %}
+	<p class="error">no sketches found.</p>
+	{% endfor %}
+</div>
+
+<div style="float: left"> <a href="/">back to front page</a> </div>
+<div id="page-nav" style="float: right">
+				{% if pages.has_previous %}
+				<span style=""><a href="?page={{ pages.previous_page_number }}">&lt;- newer</a> | </span>
+				{% endif %}
+				page {{ pages.number }} of {{ pages.paginator.num_pages }}
+				{% if pages.has_next %}
+				<span> | <a href="?page={{ pages.next_page_number }}">older -&gt;</a></span>
+				{% endif %}
+</div>
+
+{% endblock %}
+

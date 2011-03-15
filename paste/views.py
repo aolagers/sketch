@@ -4,13 +4,14 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.core.files.base import ContentFile
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 from paste.models import Drawing
 
 def front(request):
   if request.GET.get("sketch_id"):
     return redirect("/" + request.GET.get("sketch_id"))
-  return render_to_response("front.html", RequestContext(request))
+  return render_to_response("new.html", RequestContext(request))
 
 def delete_sketch(request, sketch_id):
   try:
@@ -22,7 +23,7 @@ def delete_sketch(request, sketch_id):
     sketch = None;
 
   messages.error(request, "sketch deleted")
-  return redirect("/all")
+  return redirect("/browse/")
 
 def show_sketch(request, sketch_id):
   try:
@@ -34,13 +35,8 @@ def show_sketch(request, sketch_id):
 
   return render_to_response("show_sketch.html", RequestContext(request, {"sketch": sketch}))
 
-def show_latest(request):
-  n = 9
-  sketches = Drawing.objects.all().order_by("-created")[:n]
-  return render_to_response("show_all.html", RequestContext(request, {"sketches": sketches, "sketch_count": n}))
 
-from django.core.paginator import Paginator
-def show_all(request):
+def browse(request):
   sketches_all = Drawing.objects.all().order_by("-created")
   paginator = Paginator(sketches_all, 9)
   try:
@@ -50,10 +46,10 @@ def show_all(request):
 
   try:
     sketches = paginator.page(page)
-  except:
+  except (EmptyPage, InvalidPage):
     sketches = paginator.page(paginator.num_pages)
     
-  return render_to_response("show_all.html", RequestContext(request, {"sketches": sketches}))
+  return render_to_response("browse.html", RequestContext(request, {"pages": sketches}))
 
 import base64
 def save_sketch(request):

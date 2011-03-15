@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block navigation %}
+            <strong> new </strong> |
+            <a href="/browse/"> browse </a>
+{% endblock %}
+
 {% block content %}
 <p>welcome to <strong>sketch.</strong></p>
 
@@ -35,4 +40,5 @@
 	</span>
 
 </div>
+{% csrf_token %}
 {% endblock %}
