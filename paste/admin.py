@@ -4,9 +4,9 @@ from paste.models import Sketch
 
 
 class SketchAdmin(admin.ModelAdmin):
-  #fields = ('image', 'created')
-  list_display = ('key', 'created', 'thumbnail')
-  date_hierarchy = 'created'
+    #fields = ('image', 'thumbnail')
+    list_display = ('key', 'created', 'thumbnail')
+    date_hierarchy = 'created'
 
 admin.site.register(Sketch, SketchAdmin)
 

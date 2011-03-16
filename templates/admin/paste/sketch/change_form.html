@@ -1,0 +1,9 @@
+{% extends "admin/change_form.html" %}
+
+{% block object-tools %}
+<div class="form-row image module aligned">
+	<strong> Current image: </strong>
+	<img src="{{MEDIA_URL}}drawings/{{object_id}}.png" style="display: inline-block; border: 1px solid black;" />
+
+</div>
+{% endblock %}
