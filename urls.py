@@ -4,11 +4,11 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
-from paste import views
+from sketch import views
 
 urlpatterns = patterns('',
 
-    (r'^$', views.new_sketch),
+    (r'^$', views.index),
 
     (r'^save/$', views.save_sketch),
     (r'^browse/$', views.browse),

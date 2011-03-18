@@ -7,19 +7,19 @@ from django.core.files.base import ContentFile
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 import base64
 
-from paste.models import Sketch
+from models import Sketch
 
-def new_sketch(request):
+def index(request):
     """Shows the drawing canvas.
-    If "sketch_id" in GET data, shows the sketch instead."""
+    If "sketch" in GET data, shows the sketch instead."""
     
     t = request.GET.get("t")
     if t == "light" or t == "dark":
         request.session["theme"] = t + ".css"
         return redirect(request.META.get("HTTP_REFERER"))
 
-    if request.GET.get("sketch_id"):
-        sketch = Sketch.objects.get(pk = request.GET.get("sketch_id"))
+    if request.GET.get("sketch"):
+        sketch = Sketch.objects.get(pk = request.GET.get("sketch"))
         return redirect(sketch)
     return render_to_response("new.html", RequestContext(request))
 

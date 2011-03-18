@@ -66,7 +66,7 @@ SECRET_KEY = 'gljdd2-=-gm4#^*+oa_w6d0+ko+a!()6b3az_4kplzcrpbhi6g'
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',
     'django.core.context_processors.media',
-    'paste.context_processors.theme',
+    'sketch.context_processors.theme',
     )
 
 # List of callables that know how to import templates from various sources.
@@ -82,7 +82,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'paste.middleware.PrettifyMiddleware',
+    'sketch.middleware.PrettifyMiddleware',
 
     )
 
@@ -99,7 +99,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     #'django.contrib.sites',
     'django.contrib.messages',
-    'paste',
+    'sketch',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     )

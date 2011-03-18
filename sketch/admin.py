@@ -1,5 +1,5 @@
 from django.contrib import admin
-from paste.models import Sketch
+from models import Sketch
 
 
 
