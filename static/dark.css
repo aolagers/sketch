@@ -1,0 +1,10 @@
+html, h1 {
+	background-color: #222;
+	color: white;
+}
+canvas, img {
+	background-color: white;
+}
+
+a { color: #aaa; }
+

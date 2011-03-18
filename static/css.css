@@ -1,3 +1,18 @@
+
+/*
+html, h1 {
+	background-color: #222;
+	color: white;
+}
+canvas, img {
+	background-color: white;
+}
+
+a {color: white;}
+*/
+
+
+
 #content {
 	max-width: 500px;
 	margin: 20px auto;
@@ -16,12 +31,7 @@ body, input {
 a { text-decoration: none; }
 form { display: inline; }
 
-#header { width: 100%; overflow: auto;}
-#header #heading { float: left; padding: 1px;}
-#heading h1 {display: inline;}
-#heading a {color: black;}
-#heading img {border: none;
-vertical-align: -15px;}
+#header { width: 100%; overflow: auto; }
 #header #topmenu {
 	margin-top: 25px;
 	margin-right: 80px;
@@ -29,8 +39,18 @@ vertical-align: -15px;}
 	padding: 1px;
 
 }
+#header #heading { float: left; padding: 1px; }
+#header #heading h1 { display: inline; }
+#header #heading a, #heading a:visited { color: black; }
+#header #heading img {
+	border: none;
+	vertical-align: -15px;
+	background-color: transparent;
+}
 
-img, #draw-canvas { border: 1px solid black; }
+a:hover {color: green;}
+
+img, #draw-canvas { border: 1px solid #000; }
 
 #container, #thumb-grid { margin: 15px; margin-bottom: 0px;}
 

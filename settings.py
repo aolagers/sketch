@@ -66,6 +66,7 @@ SECRET_KEY = 'gljdd2-=-gm4#^*+oa_w6d0+ko+a!()6b3az_4kplzcrpbhi6g'
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',
     'django.core.context_processors.media',
+    'paste.context_processors.theme',
     )
 
 # List of callables that know how to import templates from various sources.

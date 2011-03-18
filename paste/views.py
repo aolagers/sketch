@@ -13,6 +13,10 @@ def new_sketch(request):
     """Shows the drawing canvas.
     If "sketch_id" in GET data, shows the sketch instead."""
     
+    t = request.GET.get("t")
+    if t == "light" or t == "dark":
+        request.session["theme"] = t + ".css"
+        return redirect(request.META.get("HTTP_REFERER"))
 
     if request.GET.get("sketch_id"):
         sketch = Sketch.objects.get(pk = request.GET.get("sketch_id"))
