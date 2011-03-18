@@ -15,7 +15,7 @@ class RandomIDField(models.CharField):
     #  return models.CharField.__name__
 
     def _get_random_key(self):
-        alphabet = "abcdefghijklmnopqrstuvwxyz0123456789"
+        alphabet = "abcdefghijklmnopqrstuvwxyz123456789"
         rndstr = "".join([x for x in random.sample(alphabet, 5)])
         while Sketch.objects.filter(pk=rndstr):
             rndstr = "".join([x for x in random.sample(alphabet, 5)])
@@ -54,11 +54,11 @@ class Sketch(models.Model):
         human_date = ""
 
         if delta.days > 6:
-            human_date =  self.created.strftime("%j.%n.%Y %H:%i")
+            human_date =  self.created.strftime("%e.%m.%Y %R")
         elif delta.days > 2:
-            human_date =  self.created.strftime("last %A %H:%i")
+            human_date =  self.created.strftime("last %A at %R")
         elif delta.days == 1:
-            human_date =  "yesterday at %H:%i"
+            human_date =  self.created.strftime("yesterday at %R")
         elif delta.seconds > 7200:
             human_date =  str(delta.seconds / 3600) + " hours ago"
         elif delta.seconds > 120:

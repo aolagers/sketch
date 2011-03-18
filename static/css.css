@@ -1,23 +1,38 @@
-body {
+#content {
 	max-width: 500px;
-	margin: 50px auto;
+	margin: 20px auto;
+}
+
+#header {
+	max-width: 650px;
+	margin: 30px auto;
+}
+
+body, input {
 	font-family: 'Unkempt', sans-serif;
+	font-size: large;
 }
 
 a { text-decoration: none; }
-form { display: inline; }
+form { display: inline; }
 
-#header { width: 100%; overflow: auto; }
-#header h1 { float: left; }
+#header { width: 100%; overflow: auto;}
+#header #heading { float: left; padding: 1px;}
+#heading h1 {display: inline;}
+#heading a {color: black;}
+#heading img {border: none;
+vertical-align: -15px;}
 #header #topmenu {
 	margin-top: 25px;
+	margin-right: 80px;
 	float: right;
-	padding: 5px;
+	padding: 1px;
+
 }
 
 img, #draw-canvas { border: 1px solid black; }
 
-#container, #thumb-grid { margin: 15px; }
+#container, #thumb-grid { margin: 15px; margin-bottom: 0px;}
 
 .thumb {
 	margin-right: 10px;
@@ -28,7 +43,7 @@ img, #draw-canvas { border: 1px solid black; }
 
 #bottom-nav { overflow: auto; padding: 5px;}
 
-.buttons { margin-right: 50px; }
+.buttons { margin-top: 20px; margin-right: 20px;}
 
 .success { color: green; }
 .error { color: red; }

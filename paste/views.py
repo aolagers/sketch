@@ -1,3 +1,4 @@
+""" django views.py """
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseNotFound
@@ -9,12 +10,17 @@ import base64
 from paste.models import Sketch
 
 def new_sketch(request):
-    """Shows the drawing canvas. If "sketch_id" in GET data, shows the sketch instead."""
+    """Shows the drawing canvas.
+    If "sketch_id" in GET data, shows the sketch instead."""
+    
+
     if request.GET.get("sketch_id"):
-        return redirect("/" + request.GET.get("sketch_id"))
+        sketch = Sketch.objects.get(pk = request.GET.get("sketch_id"))
+        return redirect(sketch)
     return render_to_response("new.html", RequestContext(request))
 
 def delete_sketch(request, sketch_id):
+    """ Deletes a sketch and the associated image. """
     try:
         sketch = Sketch.objects.get(pk=sketch_id)
         if sketch.image:
@@ -27,14 +33,14 @@ def delete_sketch(request, sketch_id):
     return redirect("/browse/")
 
 def show_sketch(request, sketch_id):
+    """ Fetches one sketch and renders it. """
     try:
         sketch = Sketch.objects.get(pk=sketch_id)
-    except Sketch.DoesNotExist:
-        sketch = None;
-    except ValueError:
-        sketch = None;
+    except (ValueError, Sketch.DoesNotExist):
+        sketch = None
 
-    return render_to_response("show_sketch.html", RequestContext(request, {"sketch" : sketch}))
+    return render_to_response("show_sketch.html",
+            RequestContext(request, {"sketch" : sketch}))
 
 
 def browse(request):
@@ -52,11 +58,14 @@ def browse(request):
     except (EmptyPage, InvalidPage):
         sketches = paginator.page(paginator.num_pages)
         
-    return render_to_response("browse.html", RequestContext(request, {"pages" : sketches}))
+    return render_to_response("browse.html",
+            RequestContext(request, {"pages" : sketches}))
 
 def about(request):
-  count = Sketch.objects.all().count()
-  return render_to_response("about.html", RequestContext(request, {"count" : count}))
+    """ Shows random site info. """
+    count = Sketch.objects.all().count()
+    return render_to_response("about.html",
+            RequestContext(request, {"count" : count}))
 
 def save_sketch(request):
     """Saves a png sketch to the database.
@@ -68,10 +77,10 @@ def save_sketch(request):
     if request.method == "POST" and request.is_ajax():
         imgstring = str(request.POST.get("img"))
         pngstring = base64.b64decode(imgstring.split(",")[1])
-        new_sketch = Sketch()
-        new_sketch.save()
-        new_sketch.image.save(str(new_sketch.pk) + ".png", ContentFile(pngstring))
-        json = '{"sketch_id" : "%s"}' % new_sketch.pk
+        sketch = Sketch()
+        sketch.save()
+        sketch.image.save(str(sketch.pk) + ".png", ContentFile(pngstring))
+        json = '{"sketch_id" : "%s"}' % sketch.pk
         print "new image: %s" % json
         messages.success(request, "successfully posted a new sketch!")
         return HttpResponse(json, mimetype="application/json")

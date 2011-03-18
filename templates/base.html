@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <title>sketch</title>
     <meta charset="UTF-8" />
+    <meta name="description" content="A simple sketching and sketch sharing web app." />
+    <meta name="keywords" content="sketch, drawing, share, paste, django, canvas, html5, javascript, jquery" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Unkempt" type="text/css">
     <link rel="stylesheet" href="{{ MEDIA_URL }}css.css" type="text/css" />
+    <link rel="icon" type="image/png" href="{{MEDIA_URL}}favicon.png" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
   </head>
+
   <body>
+
     <div id="header">
-      <h1>sketch</h1>
+      <div id="heading">
+        <a href="/">
+        <img src="{{MEDIA_URL}}logo.png" alt="logo" />
+        <h1>sketch</h1>
+        </a>
+      </div>
       <div id="topmenu">
         {% block navigation %}
         <a href="/"> new </a> |
@@ -19,8 +30,8 @@
         {% endblock %}
       </div>
     </div>
-    <div id="content">
 
+    <div id="content">
       {% if messages %}
       <div id="messages">
         {% for m in messages %}
@@ -31,7 +42,7 @@
 
       {% block content %}
       {% endblock %}
-
     </div>
+
   </body>
 </html>

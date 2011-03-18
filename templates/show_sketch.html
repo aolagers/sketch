@@ -5,7 +5,7 @@
 <div id="container">
 {% if sketch %}
 	{% if sketch.image %}
-		<img class="drawing" src="{{sketch.image.url}}" alt="sketch id: {{sketch.pk}}" />
+	<img class="drawing" src="{{sketch.image.url}}" alt="sketch id: {{sketch.pk}}" width="{{sketch.image.width}}" height="{{sketch.image.height}}" />
 	{% else %}
 		<p class="error">sketch has no image.</p>
 	{% endif %}

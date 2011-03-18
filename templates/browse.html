@@ -11,7 +11,7 @@
 <div id="thumb-grid">
 
 	{% for sketch in pages.object_list %}
-	<a href="/{{sketch.pk}}">
+	<a href="{{sketch.get_absolute_url}}">
 		{% if sketch.image %}
 			<img class="thumb" src="{{sketch.image.url}}" title="sketch id: {{sketch.pk}}"  alt="sketch id: {{sketch.pk}}" />
 		{% else %}
