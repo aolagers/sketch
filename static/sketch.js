@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 
 	var canvas;
@@ -8,18 +7,17 @@ $(document).ready(function() {
 	var mouse_x;
 	var mouse_y;
 	var mousePressed = false;
-    var tool = "pen";
+	var tool = "pen";
 
 	function init() {
 		canvas  = $('#draw-canvas');
 		ctx = canvas[0].getContext("2d");
-        ctx.lineCap = "round";
 		WIDTH = canvas.width();
 		HEIGHT = canvas.height();
 
 		ctx.lineWidth = 2;
-        $("#pen").css("font-weight", "bold");
-        ctx.globalCompositeOperation = "copy";
+		$("#pen").css("font-weight", "bold");
+		ctx.globalCompositeOperation = "copy";
 
 	}
 
@@ -27,44 +25,25 @@ $(document).ready(function() {
 		if (event.data.tool == "pen") {
 			$("#pen").css("font-weight", "bold");
 			$("#eraser").css("font-weight", "normal");
+			ctx.lineCap = "butt";
 			ctx.lineWidth = 2;
 			ctx.strokeStyle = "rgba(1, 1, 1, 1)";
 		}
 		if (event.data.tool == "eraser") {
 			$("#pen").css("font-weight", "normal");
 			$("#eraser").css("font-weight", "bold");
+			ctx.lineCap = "round";
 			ctx.lineWidth = 16;
 			ctx.strokeStyle = "rgba(255, 0, 0, 0)";
 		}
 
 	}
 
-	function lols() {
-		alert(tools);
-	}
-
-
-	/*
-	$("#grow").click(function() {
-		ctx.lineWidth += 1;
-		$("#pensize").val( ctx.lineWidth  );
-	});
-
-	$("#shrink").click(function() {
-		if (ctx.lineWidth >= 2)
-			ctx.lineWidth -= 1;
-		$("#pensize").val( ctx.lineWidth  );
-	});
-	*/
-
-
 	function onMouseDown(evt) {
-      ctx.beginPath();
-      mousePressed = true;
+		mousePressed = true;
 	}
 	function onMouseUp(evt) {
-      ctx.closePath();
-      mousePressed = false;
+		mousePressed = false;
 	}
 	function onMouseMove(evt) {
 		mouse_last_x = mouse_x;
@@ -73,9 +52,11 @@ $(document).ready(function() {
 		mouse_y = evt.pageY - canvas.offset().top;
 
 		if (mousePressed) {
+			ctx.beginPath();
 			ctx.moveTo(mouse_last_x, mouse_last_y);
 			ctx.lineTo(mouse_x, mouse_y);
 			ctx.stroke();
+			ctx.closePath();
 		}
 	}
 
