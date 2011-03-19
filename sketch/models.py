@@ -29,6 +29,7 @@ class RandomIDField(models.CharField):
             setattr(model_instance, self.attname, value)
         return value
 
+
 class Sketch(models.Model):
 
     key = RandomIDField(primary_key=True, auto=True)
@@ -43,11 +44,19 @@ class Sketch(models.Model):
 
     def thumbnail(self):
         ratio = 0.2
-        return '<img src="%s" width="%s" height="%s" />' % (self.image.url, ratio * self.image.width, ratio * self.image.height)
+        if self.image:
+            return '<img src="%s" width="%s" height="%s" />' % (self.image.url, ratio * self.image.width, ratio * self.image.height)
+        else:
+            return ""
     thumbnail.allow_tags = True
 
     class Meta:
         verbose_name_plural = "sketches"
+
+    def delete(self, *args, **kwargs):
+        if self.image:
+            self.image.delete()
+        super(Sketch, self).delete(*args, **kwargs)
 
     def humanize_timediff(self):
         delta = datetime.datetime.now() - self.created
