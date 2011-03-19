@@ -18,7 +18,8 @@
 
 {% if sketch %}
 <p>created {{sketch.humanize_timediff}}</p>
-<p><a href="/delete/{{sketch.pk}}/">delete this sketch</a></p>
+
+<p><a href="{% url sketch.views.delete_sketch sketch.pk %}">delete this sketch</a></p>
 {% endif %}
 
 <div> <a href="/">back to front page</a> </div>

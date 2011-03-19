@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="{{ MEDIA_URL }}css.css" type="text/css" />
     <link rel="stylesheet" href="{{ theme }}" type="text/css" />
     <link rel="icon" type="image/png" href="{{MEDIA_URL}}favicon.png" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
   </head>
 
   <body>
@@ -26,8 +24,8 @@
       <div id="topmenu" style="text-align: right">
         {% block navigation %}
         <a href="/"> new </a> |
-        <a href="/browse/"> browse </a> | 
-        <a href="/about/"> about </a>
+        <a href="{% url sketch.views.browse %}"> browse </a> | 
+        <a href="{% url sketch.views.about %}"> about </a>
         {% endblock %}
         <br/>
         <span style="font-size: small;text-align: right;">

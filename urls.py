@@ -11,13 +11,14 @@ urlpatterns = patterns('',
     (r'^$', views.index),
 
     (r'^save/$', views.save_sketch),
+    #(r'^test/$', 'django.views.generic.simple.direct_to_template', {"template":"test.html"}),
     (r'^browse/$', views.browse),
     (r'^about/$', views.about),
     (r'^delete/(\w+)/$', views.delete_sketch),
 
     (r'^admin/', include(admin.site.urls)),
 
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {"document_root": settings.MEDIA_ROOT}),
+    #(r'^static/(?P<path>.*)$', 'django.views.static.serve', {"document_root": settings.MEDIA_ROOT}),
 
     (r'^(\w+)/$', views.show_sketch),
 

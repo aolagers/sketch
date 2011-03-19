@@ -2,18 +2,35 @@
 
 {% block navigation %}
             <strong> new </strong> |
-            <a href="/browse/"> browse </a> | 
-            <a href="/about/"> about </a>
+			<a href="{% url sketch.views.browse %}"> browse </a> | 
+			<a href="{% url sketch.views.about %}"> about </a>
             
 {% endblock %}
 
 {% block content %}
 
-<p><strong>step 1:</strong> express yourself</p>
+<link type="text/css" href="/static/jquery-ui/css/ui-lightness/jquery-ui-1.8.11.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="/static/jquery-ui/js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="/static/jquery-ui/js/jquery-ui-1.8.11.custom.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}sketch.js"></script>
+
+
+
+<div id="top-stuff" style="overflow: visible;">
+  <div class="left"><strong>step 1:</strong> express yourself </div>
+  <div id="controls" class="right" style="height: 10px; overflow: visible;">
+    <input type="submit" id="pen" value="pen" />
+    <input type="submit" id="eraser" value="eraser" />
+    <input type="submit" id="shrink" value="-" />
+    <input type="textfield" value="2" id="pensize" style="width: 20px"/>
+    <input type="submit" id="grow" value="+" />
+  </div>
+</div>
+
+
 <div id="container">
-	<script type="text/javascript" src="{{ MEDIA_URL }}sketch.js"></script>
 	<canvas id="draw-canvas" width="450" height="320">
-	Your browser does not support the <a href="http://en.wikipedia.org/wiki/Canvas_element">HTML5 canvas element.</a>
+    Your browser does not support the <a href="http://en.wikipedia.org/wiki/Canvas_element">HTML5 canvas element.</a>
 	</canvas>
 </div>
 

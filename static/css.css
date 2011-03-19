@@ -56,4 +56,12 @@ img, #draw-canvas { border: 1px solid #000; }
 .left { float: left; }
 .right { float: right; }
 
+#top-stuff {
 
+  padding-bottom: 25px;
+  margin-right: 20px;
+  }
+
+#top-stuff input {
+  font-size: small;
+}
