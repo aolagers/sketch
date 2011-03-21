@@ -7,7 +7,9 @@
 {% endblock %}
 
 {% block content %}
-<p> showing sketches <strong> {{ pages.start_index }} - {{ pages.end_index }} </strong></p>
+<div id="top-stuff">
+	showing sketches <strong> {{ pages.start_index }} - {{ pages.end_index }} </strong>
+</div>
 <div id="thumb-grid">
 
 	{% for sketch in pages.object_list %}
@@ -23,7 +25,7 @@
 	{% endfor %}
 </div>
 
-<div id="bottom-nav">
+<div id="bottom-stuff">
 	<div class="left"> <a href="/">back to front page</a> </div>
 	<div class="right">
 		{% if pages.has_previous %}

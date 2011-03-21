@@ -1,15 +1,18 @@
 
 #content {
+	width: 96%;
 	max-width: 500px;
 	margin: 20px auto;
 }
 
 #header {
+	width: 96%;
 	max-width: 650px;
 	margin: 30px auto;
 }
 
-body, input {
+
+body {
 	font-family: 'Unkempt', sans-serif;
 	font-size: large;
 }
@@ -38,7 +41,7 @@ a:hover {color: green;}
 
 img, #draw-canvas { border: 1px solid #000; }
 
-#container, #thumb-grid { margin: 15px; margin-bottom: 0px;}
+#container, #thumb-grid { margin: 15px;}
 
 .thumb {
 	margin-right: 10px;
@@ -47,21 +50,27 @@ img, #draw-canvas { border: 1px solid #000; }
 	height: auto;
 }
 
-#bottom-nav { overflow: auto; padding: 5px;}
+#bottom-stuff, #top-stuff {
+	/*border: 1px solid black;
+	 * */
+	overflow: hidden;
+	width: 100%;
+	padding: 5px;
+}
+#top-stuff ul {
+	margin-top: 0px;
+}
 
-.buttons { margin-top: 20px; margin-right: 20px;}
+.buttons { margin-right: 50px; }
 
 .success { color: green; }
 .error { color: red; }
 .left { float: left; }
 .right { float: right; }
 
-#top-stuff {
 
-  padding-bottom: 25px;
-  margin-right: 20px;
-  }
-
-#top-stuff input {
+/*
+input {
   font-size: small;
 }
+*/

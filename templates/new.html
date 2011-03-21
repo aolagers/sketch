@@ -14,9 +14,11 @@
 
 
 
-<div id="top-stuff" style="overflow: visible;">
+<div id="top-stuff">
+
   <div class="left"><strong>step 1:</strong> express yourself </div>
-  <div id="controls" class="right" style="height: 10px; overflow: visible;">
+
+  <div class="right buttons">
     <input type="submit" id="pen" value="pen" />
     <input type="submit" id="eraser" value="eraser" />
 	<!--
@@ -25,6 +27,7 @@
     <input type="submit" id="grow" value="+" />
 	-->
   </div>
+
 </div>
 
 
@@ -34,8 +37,11 @@
 	</canvas>
 </div>
 
-<p class="left"><strong>step 2:</strong> share</p>
-<div id="bottom-nav">
+
+<div id="bottom-stuff">
+
+	<div class="left"><strong>step 2:</strong> share </div>
+
 	<div class="right buttons">
 		<form method="get">
 			<input type="submit" value="clear" />
@@ -45,6 +51,7 @@
 			<input id="save-button" type="submit" value="share" style="font-weight: bold"/>
 		</form>
 	</div>
+
 </div>
 
 {% csrf_token %}

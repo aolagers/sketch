@@ -60,12 +60,11 @@ class Sketch(models.Model):
 
     def humanize_timediff(self):
         delta = datetime.datetime.now() - self.created
-        human_date = ""
 
         if delta.days > 6:
             human_date =  self.created.strftime("%e.%m.%Y %R")
-        elif delta.days > 2:
-            human_date =  self.created.strftime("last %A at %R")
+        elif delta.days >= 2:
+            human_date =  self.created.strftime("last %A at %R").lower()
         elif delta.days == 1:
             human_date =  self.created.strftime("yesterday at %R")
         elif delta.seconds > 7200:
@@ -74,4 +73,5 @@ class Sketch(models.Model):
             human_date =  str(delta.seconds / 60) + " minutes ago"
         else:
             human_date =  "a few seconds ago"
+
         return human_date
