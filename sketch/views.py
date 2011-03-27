@@ -19,7 +19,7 @@ def index(request):
         return redirect(request.META.get("HTTP_REFERER"))
 
     if request.GET.get("sketch"):
-        sketch = Sketch.objects.get(pk = request.GET.get("sketch"))
+        sketch = Sketch.objects.get(pk=request.GET.get("sketch"))
         return redirect(sketch)
     return render_to_response("new.html", RequestContext(request))
 

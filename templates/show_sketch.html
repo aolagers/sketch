@@ -1,19 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p> showing sketch id <strong>{{ sketch.pk }}</strong></p>
+<div id="top-stuff">
+	showing sketch id <strong>{{ sketch.pk }}</strong>
+</div>
+
 <div id="container">
 {% if sketch %}
 	{% if sketch.image %}
-	<img class="drawing" src="{{sketch.image.url}}" alt="sketch id: {{sketch.pk}}" width="{{sketch.image.width}}" height="{{sketch.image.height}}" />
+		<img class="drawing" src="{{sketch.image.url}}" alt="sketch id: {{sketch.pk}}" width="{{sketch.image.width}}" height="{{sketch.image.height}}" />
 	{% else %}
 		<p class="error">sketch has no image.</p>
 	{% endif %}
 {% else %}
 	<p class="error">sketch not found.</p>
 {% endif %}
-</p>
-
 </div>
 
 {% if sketch %}
